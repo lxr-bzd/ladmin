@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.foxtail.dao.mybatis.sys.SysRoleResDao">
+	
+	
+	<!-- 根据对象字段保存 -->
+	<insert id="save"  >
+	   insert into t_sys_role_res(roleid,resid)
+	   values (#{roleid},#{resid})
+	</insert>
+
+	
+	<!-- 根据角色id删除关系 -->
+	<delete id="delete" >
+		delete from t_sys_role_res where roleid in
+	  <foreach collection="roleids" item="id" index="index" open="(" close=")" separator=",">
+              #{id}
+          </foreach>
+	</delete>
+	
+	<delete id="deleteByResid" >
+		delete from t_sys_role_res where resid in
+	  <foreach collection="resids" item="id" index="index" open="(" close=")" separator=",">
+              #{id}
+              
+          </foreach>
+	</delete>
+	
+	<select id="findByRoleid" resultType="com.foxtail.model.sys.SysRoleRes">
+	select * from t_sys_role_res where roleid=#{roleid}
+	
+	</select>
+	
+	
+</mapper>   

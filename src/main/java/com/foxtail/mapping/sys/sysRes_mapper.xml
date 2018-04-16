@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.foxtail.dao.mybatis.sys.SysResDao">
+	
+	<sql id="BASE_COL">
+		a.*
+	</sql>
+	
+	
+	
+	<select id="getById" resultType="com.foxtail.model.sys.SysRes" parameterType="string" >
+	  select <include refid="BASE_COL" />,b.name parentName from t_sys_resource a left join t_sys_resource b on a.parentid=b.id
+	    where a.id = #{id}
+	</select>
+	 <!-- 分页数据 -->    
+	<select id="findForPage" resultType="com.foxtail.model.sys.SysRes" >
+  		select <include refid="BASE_COL" />,b.name  parentName from t_sys_resource a LEFT JOIN t_sys_resource b on b.parentid = b.id
+  		 where 1=1
+		  	<if test="kw != null ">and a.id like CONCAT('%',#{kw},'%')</if>
+		  	<if test="pid != null ">and a.parentid = #{ pid }</if>
+  	    order by a.level,a.sort
+    </select>
+    
+   <!-- 保存对象 -->
+	<insert id="save">
+      INSERT INTO t_sys_resource(id,  name,  parentid,  level,  ckey,  path,  icon,  rdesc,  permission,  sort,  status,  creator,  createtime) 
+      VALUES(#{ mo.id },#{ mo.name },#{ mo.parentid },#{ mo.level },#{ mo.ckey },#{ mo.path },#{ mo.icon },#{ mo.rdesc },#{ mo.permission },#{ mo.sort },#{ mo.status },#{ mo.creator },#{ mo.createtime })
+	</insert>
+	
+	
+	 <!-- 分页数据 -->    
+	<select id="queryUriName" resultType="com.foxtail.model.sys.SysRes" >
+  		select   <include refid="BASE_COL" /> from t_sys_resource a where a.path=#{uri}
+    </select>
+	
+	 <!-- 获取表所有数据 -->
+    <select id="findAll" resultType="com.foxtail.model.sys.SysRes" >
+      select <include refid="BASE_COL" />
+      from t_sys_resource a
+    </select>
+
+	
+	
+	<delete id="deleteByParentId" parameterType="java.lang.Integer" >
+	  delete from t_sys_resource
+	  where parentid = #{parentid,jdbcType=INTEGER}
+	</delete>
+
+	
+	
+	<update id="update" parameterType="com.foxtail.model.sys.SysRes" >
+	   update t_sys_resource
+		<set >
+			<if test="parentid != null ">
+		  	parentid = #{parentid},
+			</if>
+			<if test="name != null ">
+		  	name = #{name},
+			</if>
+			<if test="path != null ">
+		  	path = #{path},
+			</if>
+			<if test="icon != null ">
+		  	icon = #{icon},
+			</if>
+			<if test="level != null ">
+		  	level = #{level},
+			</if>
+			<if test="rdesc != null ">
+		  	rdesc = #{rdesc},
+			</if>
+			<if test="permission != null ">
+		  	permission = #{permission},
+			</if>
+			
+			<if test="sort != null ">
+		  	sort = #{sort},
+			</if>
+			<if test="status != null ">
+		  	status = #{status},
+			</if>
+			
+	    </set>
+	   where id = #{id}
+	</update>
+
+
+
+	
+
+	
+	<!--批量删除-->
+	<delete id="delete" >
+	   delete from t_sys_resource
+	   where id in
+	      <foreach collection="ids" item="id" index="index"
+             open="(" close=")" separator=",">
+              #{id}
+          </foreach>
+	</delete>
+	
+	<!-- 根据用户id查找资源 -->
+	 <select id="findAllByUid" resultType="com.foxtail.model.sys.SysRes" >
+	 	SELECT DISTINCT resource.* FROM t_sys_resource resource
+		JOIN  t_sys_role_res role ON role.resid=resource.id
+		JOIN t_sys_user_role u ON u.roleid=role.roleid
+		WHERE resource.status=1 AND u.uid=#{uid}
+		
+		ORDER BY resource.level,resource.sort
+	 </select>
+	
+	<!-- 根据上级资源id查找 -->
+	<select id="findByPid"  resultType="com.foxtail.model.sys.SysRes">
+		select <include refid="BASE_COL"/>
+		from t_sys_resource a where 1=1 AND  a.parentid = #{pid}
+		order by sort
+	</select>
+	
+	<!-- 根据上级资源id查找资源总数 -->
+	<select id="selectCountByParentId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+	    SELECT count(*) as total  FROM T_SYS_RESOURCE
+		WHERE parentid = #{parentId,jdbcType=INTEGER}
+	</select>
+	
+
+	
+	<!-- 查询授权数据 -->
+    <select id="findAuthorizationAll" resultType="com.foxtail.model.sys.TreeNode"  >
+	    select DISTINCT t.*,r.role_id from t_sys_resource t 
+		LEFT JOIN ( SELECT m.id,m.role_id ,m.resource_id from t_sys_role_res m where m.roleid = #{roleId} ) as r
+		on t.id = r.resource_id
+		order by sort
+	 </select>
+	 
+	 
+	 
+	 <!-- 查询所需要资源是否被引用 -->
+	 <select id="selectResourceReference" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		 SELECT SUM(total_num) total FROM
+	 		(SELECT COUNT(*) total_num FROM t_sys_resource r
+			 WHERE r.parentid=#{resourceId,jdbcType=INTEGER}
+			 UNION ALL 
+			 SELECT COUNT(*) total_num2 FROM  t_sys_role_res r2
+			 WHERE r2.resid=#{resourceId,jdbcType=INTEGER}
+			) t_union
+	 </select>
+	
+</mapper>   
