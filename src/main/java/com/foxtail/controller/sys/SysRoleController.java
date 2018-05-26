@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import com.foxtail.common.DataGridResult;
-import com.foxtail.common.JsonResult;
 import com.foxtail.common.base.BaseController;
 import com.foxtail.common.page.Pagination;
 import com.foxtail.common.web.DataGrid;
@@ -26,6 +25,7 @@ import com.foxtail.model.sys.SysUserRole;
 import com.foxtail.service.sys.SysResService;
 import com.foxtail.service.sys.SysRoleService;
 import com.foxtail.vo.tree.TreeNode;
+import com.ladmin.JsonResult;
 import com.lxr.commons.exception.ApplicationException;
 
 @Controller

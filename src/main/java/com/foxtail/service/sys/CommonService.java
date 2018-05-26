@@ -3,7 +3,7 @@ package com.foxtail.service.sys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.foxtail.dao.mybatis.sys.CommonDao;
+import com.foxtail.dao.sys.CommonDao;
 import com.lxr.commons.exception.ApplicationException;
 
 @Service

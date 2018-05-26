@@ -4,7 +4,7 @@
   
     <properties>  
         <property name="LOG_HOME">${sys:catalina.home}/logs</property>
-        <property name="APP_NAME">jroa</property>  
+        <property name="APP_NAME">ladmin</property>  
     </properties>  
   
   

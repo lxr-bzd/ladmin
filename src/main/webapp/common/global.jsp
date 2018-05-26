@@ -59,7 +59,5 @@
 				}
 			}
 		}); 
-		layui.use('form', function(){
-		  form = layui.form;
-		});
+		
 	</script>

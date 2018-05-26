@@ -2,7 +2,7 @@ package com.foxtail.common;
 
 import com.foxtail.common.page.Pagination;
 import com.foxtail.common.web.DataGrid;
-import com.foxtail.core.util.PageUtils;
+import com.ladmin.util.PageUtils;
 
 public class DataGridResult {
 

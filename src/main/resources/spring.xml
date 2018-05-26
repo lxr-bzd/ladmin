@@ -24,7 +24,7 @@
 	<!-- <util:properties id="APP_PROPERTIES" location="classpath:config.properties" local-override="true" />
  -->
 	<!-- spring上下文,可以获取 上下文的Context -->
-	<bean id="appUtil" class="com.foxtail.core.util.AppUtil" />
+	<bean id="appUtil" class="com.ladmin.util.AppUtil" />
     <bean class="com.foxtail.common.util.SpringContextUtils" />
 
 	<import resource="spring-shiro.xml"/> 

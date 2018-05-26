@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html style="overflow:hidden">
+<head>
+<meta name=renderer content=webkit>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>工作台首页</title>
+<link href="css/layout/main.css" rel="stylesheet" type="text/css" />
+<script src="jslib/jquery.min-1.11.js"></script>
+<script src="jslib/layer/layer.js"></script>
+<script type="text/javascript" src="js/foxtail/app.js"></script>
+<script type="text/javascript" src="js/foxtail/Tools.js"></script>
+
+<script type="text/javascript">
+$(function(){	
+	 layoutrezise();
+     AutoHeight();
+	//顶部导航切换
+	$(".nav li a").click(function(){
+		$(".nav li a.selected").removeClass("selected");
+		$(this).addClass("selected");
+	});	
+	//导航切换
+	$(".menuson li").click(function(){
+		$(".menuson li.active").removeClass("active");
+		$(this).addClass("active");
+	});
+	$('.title').click(function(){
+		var $ul = $(this).next('ul');
+		if($ul.is(':visible')){
+			$(this).next('ul').hide();
+			 $(this).find('.J_switchs').removeClass('on');
+		}else{
+			$(this).next('ul').show();
+			 $(this).find('.J_s').addClass('on');
+		}
+	});
+	
+	var firstSys= $('#top .nav li').eq(0).find('a').trigger('click');
+	
+});	
+function layoutrezise() {
+    var headerH = $("div#top").height();
+    var footerH = $("div#footer").height();
+    var bodyerH = $(window).height() - headerH - footerH;
+    $("div#middle,div#middle-left,div#middle-right,iframe#rightFrame").height(bodyerH);
+    $("div#middle-right").width($(window).width() - $("div#middle-left").width());
+}
+function AutoHeight() {
+    $(window).resize(function () {
+        layoutrezise();
+    })
+} 
+
+
+
+
+
+
+var menuModel = [];
+
+$(function(){
+	
+	$app.request("sys/auth/res/myres.do",function(data){
+		menuModel = $lxr.tree(data,{pidname:"parentid",idname:"id",rootval:1})
+		
+		for (var i = 0; i < menuModel.length; i++) {
+			var id = menuModel[i].id;
+			var name = menuModel[i].name;
+			var icon = menuModel[i].icon;
+			var html = $('<li><a  id="sys_'+id+'" onclick="selectRootMenu($(this).parent())" ><img src="images/layout/'+icon+'" /><h2 >'+name+'</h2></a></li>');
+			html.data("menu",menuModel[i]);
+			$("#rootMenu").append(html);
+		}
+		
+	});
+	
+})
+
+
+
+
+
+
+function selectRootMenu(tr){
+		var model = tr.data("menu");
+	$('.leftmenu').empty();
+	
+	if(!model)	return;
+	
+		for (var i = 0; i < model.childs.length; i++) {
+			var m = model.childs[i];
+			var html ='	<dd  >                                             '+
+				'    <div class="title" onclick="switch2Menu(this)">                                                                         '+
+				'    	<span class="J_switchs cu on" title="展开或关闭"></span>'+m.name+'                     '+
+				'		</div>          '+
+				'	<ul class="menuson" >    ';
+			
+			for (var j = 0; j < m.childs.length; j++) {
+				html += '<li><a href="'+m.childs[j].path+'" target="rightFrame">'+m.childs[j].name+'</a><i></i></li>   ';
+			}
+			
+			html+='		</ul>  </dd>';
+			
+			$('.leftmenu').append(html);
+				
+		}
+		
+		
+	
+}
+
+
+
+function switch2Menu(dd){
+	$(dd).parent().find('.menuson').toggle();
+	
+}
+
+
+</script>
+</head>
+<div>
+	<div id="top" class="header">
+		<div class="topleft" >
+	    	<a  target="rightFrame"><img src="images/layout/logo.png" title="系统首页" /></a>
+	    </div>
+    <ul id="rootMenu" class="nav">
+	
+  
+    
+    </ul>
+    <div class="topright">    
+	    
+		<div class="user">
+			<span>您好：${user.name }</span>
+			<a href="#" onclick="javascript:window.location='${path}/logout.do'" target="_parent">安全退出</a>
+			<a href="#" onclick="touPwd()" target="_parent">修改密码</a>
+		</div>    
+    </div>
+	<!-- topEnd -->
+	</div>
+	<div id="middle" style="width: 100%;height: 100%;">
+		<div id="middle-left" style="position:fixed;left: 0;top: 80px;bottom: 0;width: 182px;background-color: #EEEEEE;border-right: 1px solid #dbdbdb;float: left;box-sizing: border-box;">
+			
+    		<dl class="leftmenu">
+    		
+    			
+    		
+				</dl>
+		</div>
+		<div id="middle-right"  >
+			 <iframe id="rightFrame" name="rightFrame" style="width:100%; border:0;" src="/my/main/index.do"></iframe>
+		</div>
+		 <div id="clear" style="clear: both;"></div> 
+	</div>
+	<div id="footer" style="background-color:#eee">
+	     <center><a href=""data-con="南昌嘉瑞科技有限公司" /></a></center>
+	</div>  
+</div>
+</body>
+</html>

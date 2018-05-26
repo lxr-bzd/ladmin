@@ -85,7 +85,7 @@
         <property name="contentType" value="text/html;charset=UTF-8" />  
 <!--         <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" /> -->  
         <!-- 将Spring的FreeMarkerView改成我们扩展的View -->  
-        <property name="viewClass" value="com.foxtail.core.freemarker.ExFreeMarkerView" />  
+        <property name="viewClass" value="com.ladmin.freemarker.ExFreeMarkerView" />  
         <property name="exposeRequestAttributes" value="true" />  
         <property name="exposeSessionAttributes" value="true" />  
         <property name="exposeSpringMacroHelpers" value="true" />  
@@ -162,9 +162,7 @@
 	</bean>
 	
 	<mvc:interceptors>
-		<bean class="com.foxtail.core.interceptor.HttpLogInterceptor" />
-		
-		
+		<bean class="com.ladmin.interceptor.HttpLogInterceptor" />
 		
 	</mvc:interceptors>
 </beans>

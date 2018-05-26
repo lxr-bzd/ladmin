@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.foxtail.common.DataGridResult;
-import com.foxtail.common.JsonResult;
 import com.foxtail.common.base.BaseController;
 import com.foxtail.common.page.Pagination;
 import com.foxtail.common.web.DataGrid;
 import com.foxtail.model.sys.SysUser;
 import com.foxtail.model.sys.SysUserRole;
 import com.foxtail.service.sys.SysUserService;
+import com.ladmin.JsonResult;
 
 @Controller
 @RequestMapping("sys/auth/user") 
