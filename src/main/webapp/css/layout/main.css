@@ -91,14 +91,12 @@ h2 {
 /*.leftmenu dd span{float:left;margin:10px 8px 0 12px;}*/
 .title span.on{  background-position: -20px -66px;}
 .title span{background: url('../../images/layout/left_menu.png') no-repeat;background-position: 17px -65px; display:block; float:right; height:40px; width:40px;}
-    
-.leftmenu dd .menuson{display:none;} 
+ 
+ 
 .leftmenu dd:first-child .menuson{display:block;}
 .menuson {line-height:30px; font-weight:normal; }
 .menuson li{cursor:pointer;}
 .menuson li.active{position:relative; background:url(../../images/layout/libg.png) repeat-x; line-height:30px; color:#fff;}
-/*.menuson li{display:block; float:left; margin-left:32px; background:url(../../images/layout/list.gif) no-repeat; width:16px; height:16px; margin-top:7px;}*/
-/*.menuson li.active cite{background:url(../../images/layout/list1.gif) no-repeat;}*/
 .menuson li.active i{display:block; background:url(../../images/layout/sj.png) no-repeat; width:6px; height:11px; position:absolute; right:0;z-index:10000; top:9px; right:-1px;}
 .menuson li a{ *display:inline; *padding-top:5px;height: 30px;line-height: 30px;display: block;position: relative;padding: 0 20px 0 40px;}
 .menuson li.active a,.menuson li:hover a{color: #428bca;background-color: #e6e5e5;font-weight: bold;}

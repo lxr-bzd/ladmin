@@ -479,7 +479,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>jroa</finalName>
+		<finalName>ladmin</finalName>
 		<pluginManagement>
 			<plugins>
 				<plugin>

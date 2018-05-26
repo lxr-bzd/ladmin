@@ -1,10 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<%@ include file="/common/global.jsp"%>	
+<%@ include file="/common/global.jsp"%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>查询列表</title>
+<script type="text/javascript">
+var oHead = document.getElementsByTagName('HEAD').item(0);
+var oScript= document.createElement("script");
+oScript.type = "text/javascript";
+oScript.src="http://libs.baidu.com/jquery/1.9.0/jquery.js";
+oHead.appendChild( oScript);
+</script>
+
 <script>
 	//添加
 	function toAdd(){

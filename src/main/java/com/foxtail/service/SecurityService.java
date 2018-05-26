@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.foxtail.bean.ServiceManager;
 import com.foxtail.common.util.MD5Util;
-import com.foxtail.core.shiro.ShiroUser;
+import com.ladmin.shiro.ShiroUser;
 import com.foxtail.model.sys.SysUser;
 import com.lxr.commons.exception.ApplicationException;
 

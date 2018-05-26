@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.WebBindingInitializer;
 import org.springframework.web.context.request.WebRequest;
 
-import com.foxtail.common.JsonResult;
 import com.foxtail.common.LoggerUtils;
 import com.foxtail.common.page.Pagination;
 import com.foxtail.common.web.WebUtils;
-import com.foxtail.core.util.PageUtils;
+import com.ladmin.util.PageUtils;
+import com.ladmin.JsonResult;
 import com.lxr.commons.exception.ApplicationException;
 
 

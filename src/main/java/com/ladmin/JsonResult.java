@@ -1,4 +1,4 @@
-package com.foxtail.common;
+package com.ladmin;
 
 public class JsonResult {
 	//业务处理错误

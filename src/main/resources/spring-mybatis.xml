@@ -100,7 +100,7 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 
 
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.foxtail.dao.mybatis" />
+		<property name="basePackage" value="com.foxtail.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 

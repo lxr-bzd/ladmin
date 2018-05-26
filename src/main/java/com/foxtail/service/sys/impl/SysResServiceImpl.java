@@ -1,25 +1,18 @@
 package com.foxtail.service.sys.impl;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.foxtail.common.page.Pagination;
-import com.foxtail.common.util.PublicUtil;
-import com.foxtail.core.shiro.Myprem;
-import com.foxtail.core.shiro.PermManager;
-import com.foxtail.core.shiro.ShiroUser;
-import com.foxtail.dao.mybatis.sys.SysResDao;
-import com.foxtail.dao.mybatis.sys.SysRoleResDao;
+import com.ladmin.shiro.Myprem;
+import com.ladmin.shiro.PermManager;
+import com.foxtail.dao.sys.SysResDao;
+import com.foxtail.dao.sys.SysRoleResDao;
 import com.foxtail.model.sys.SysRes;
 import com.foxtail.model.sys.SysRoleRes;
 import com.foxtail.service.sys.SysResService;
