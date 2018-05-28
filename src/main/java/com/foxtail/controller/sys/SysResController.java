@@ -198,5 +198,9 @@ public class SysResController extends BaseController {
 
     	return resList;
 	}
+<<<<<<< HEAD
+=======
+	
+>>>>>>> branch 'html版本' of https://github.com/lxr-bzd/ladmin.git
 
 }

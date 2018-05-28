@@ -12,6 +12,10 @@ oScript.type = "text/javascript";
 oScript.src="http://libs.baidu.com/jquery/1.9.0/jquery.js";
 oHead.appendChild( oScript);
 </script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'html版本' of https://github.com/lxr-bzd/ladmin.git
 <script>
 	//添加
 	function toAdd(){
