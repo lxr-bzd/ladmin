@@ -31,7 +31,7 @@ import com.ladmin.JsonResult;
 
 @Controller
 public class LoginController {
-	
+
 	@Autowired
 	protected RedisTemplate<Serializable, Serializable> redisTemplate;
 	

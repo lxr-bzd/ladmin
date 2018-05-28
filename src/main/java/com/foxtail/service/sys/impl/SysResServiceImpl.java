@@ -19,7 +19,6 @@ import com.foxtail.service.sys.SysResService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.lxr.commons.exception.ApplicationException;
-
 @Service
 public class SysResServiceImpl implements SysResService{
 

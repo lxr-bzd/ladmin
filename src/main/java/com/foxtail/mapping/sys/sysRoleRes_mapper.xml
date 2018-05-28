@@ -22,7 +22,7 @@
 		delete from t_sys_role_res where resid in
 	  <foreach collection="resids" item="id" index="index" open="(" close=")" separator=",">
               #{id}
-              
+          
           </foreach>
 	</delete>
 	

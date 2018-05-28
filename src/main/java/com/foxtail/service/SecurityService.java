@@ -1,7 +1,6 @@
 package com.foxtail.service;
 
 import java.util.Collection;
-
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.eis.SessionDAO;

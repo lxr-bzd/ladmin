@@ -30,8 +30,7 @@ import com.lxr.commons.exception.ApplicationException;
 
 @Controller
 @RequestMapping("sys/auth/role") 
-public class SysRoleController extends BaseController {
-	
+public class SysRoleController extends BaseController {	
 	private final static Logger log= Logger.getLogger(SysRoleController.class);
 
 	@Autowired

@@ -3,7 +3,6 @@ package com.foxtail.common;
 import com.foxtail.common.page.Pagination;
 import com.foxtail.common.web.DataGrid;
 
-
 public class DataGridResult {
 
 	public static DataGrid getResult(Pagination pagination) {

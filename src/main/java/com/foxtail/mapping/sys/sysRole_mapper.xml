@@ -13,7 +13,7 @@
 		  <if test="kw != null ">and role_name like CONCAT('%',#{kw},'%')</if>
   	</select> 
   	
-  	
+  
   	  
   	<select id="getById" resultType="com.foxtail.model.sys.SysRole" parameterType="string" >
 	  select <include refid="BASE_COL" />

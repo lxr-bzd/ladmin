@@ -198,6 +198,5 @@ public class SysResController extends BaseController {
 
     	return resList;
 	}
-	
 
 }

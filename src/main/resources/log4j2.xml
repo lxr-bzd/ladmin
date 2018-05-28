@@ -7,7 +7,7 @@
         <property name="APP_NAME">ladmin</property>  
     </properties>  
   
-  
+ 
     <Appenders>  
         <Console name="Console" target="SYSTEM_OUT">  
         

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import com.foxtail.dao.sys.CommonDao;
 import com.lxr.commons.exception.ApplicationException;
-
 @Service
 public class CommonService {
 

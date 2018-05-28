@@ -21,7 +21,6 @@ import com.lxr.commons.exception.ApplicationException;
 public class SysUserServiceImpl implements SysUserService{
 
 	private final static Logger log = Logger.getLogger(SysUserServiceImpl.class);
-
 	@Autowired
 	private SysUserDao sysUserDao;
 	

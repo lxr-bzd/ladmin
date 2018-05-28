@@ -23,7 +23,6 @@ import com.ladmin.JsonResult;
 public class SysUserController extends BaseController {
 	
 	private final static Logger log= Logger.getLogger(SysUserController.class);
-
 	@Autowired
 	private SysUserService sysUserService; 
 	

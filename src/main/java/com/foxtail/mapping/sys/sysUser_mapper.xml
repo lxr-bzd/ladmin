@@ -10,7 +10,7 @@
   		<include refid="BASE_COL" /> from t_sys_user a
 		<if test="kw != null ">and a.account like #{ kw }</if>
   	</select>      
-  
+ 
 	<!-- 根据主键获取对象 -->  
 	<select id="getById" resultType="com.foxtail.model.sys.SysUser" parameterType="string" >
 	  select 

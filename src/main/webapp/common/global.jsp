@@ -10,6 +10,7 @@
 		var path = '<%=request.getContextPath() %>';
 		var _pageSize=10;
 	</script>
+	
 	<script src="${path }/jslib/jquery.min-1.11.js"></script>
 	<script src="${path }/jslib/browser.js"></script>
 	

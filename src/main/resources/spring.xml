@@ -10,7 +10,7 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd
 		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.0.xsd">
     
-    
+   
 	
 	<!-- 引入jdbc配置文件 -->
     <context:property-placeholder location="classpath:config.properties" ignore-unresolvable="true"/> 

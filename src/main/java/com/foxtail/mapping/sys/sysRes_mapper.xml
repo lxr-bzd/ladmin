@@ -6,7 +6,7 @@
 		a.*
 	</sql>
 	
-	
+
 	
 	<select id="getById" resultType="com.foxtail.model.sys.SysRes" parameterType="string" >
 	  select <include refid="BASE_COL" />,b.name parentName from t_sys_resource a left join t_sys_resource b on a.parentid=b.id

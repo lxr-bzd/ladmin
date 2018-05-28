@@ -10,7 +10,7 @@
               #{id}
           </foreach>
 	</delete>
-
+	
 	<!-- 保存对象 -->
 	<insert id="save" >
        insert into t_sys_user_role (uid,roleid)values (#{uid},#{roleid})
