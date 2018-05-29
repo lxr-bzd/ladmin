@@ -1,6 +1,7 @@
 package com.foxtail.service.sys.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,8 +113,12 @@ public class SysRoleServiceImpl implements SysRoleService{
 		return null;
 	}
 
-	
-	
+
+	@Override
+	public List<Map<String, Object>> findAllByUid(String uid) {
+		
+		return sysUserRoleDao.findAllByUid(uid);
+	}
 	
 }
 

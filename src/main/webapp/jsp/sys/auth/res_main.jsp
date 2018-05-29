@@ -32,18 +32,26 @@ border-left: 1px solid #eee;
 	var load = false;
 
 	$(function(){
+		initTree();
+	});
+	
+	
+	function initTree(){
 		zTree = $.fn.zTree.init($("#treeDemo"), setting);
-	})
+		
+	}
+	
 	
 	//添加
 	function toAdd(){
-		var nodeId=getSelectTreeId();
+		var nodeId = getSelectTreeId();
 		if(nodeId){
 			var option=$('#mainTable').bootstrapTable('getOptions');
 			var total=option.totalRows;
 			$app.dialog('${path}/sys/auth/res/toedit.do?parentId='+nodeId+"&orderNum="+total,function(){
-				refMainTable();
-			},{width:"900px",height:"600px"});
+				initTree();
+		    	refTable();
+			},{height:"500px"});
 		
 		}else
 			$app.alert("请选择左边的目录");
@@ -54,16 +62,16 @@ border-left: 1px solid #eee;
 	}
 	//删除
 	function toRemove(ids){
-		if(!ids)
-		ids=getSelectedRowsIds('mainTable');
+		if(!ids)ids=getSelectedRowsIds('mainTable');
 		
 		if(ids){
-			$app.confirm("删除数据不可恢复，确定要删除吗？",function(){
+			$app.confirm("确定删除？",function(){
 				$.post('${path}/sys/auth/res/delete.do?ids='+ids,function(data){
 				
 				    if(data.code==1){
 				    	$app.alert("删除成功");
-	 					
+				    	initTree();
+				    	refTable();
 				    }else
 				    	$app.alert(msg);
 				    	
@@ -109,7 +117,7 @@ border-left: 1px solid #eee;
 		if(selectNode){
 			selectNode.parentId=selectNode.id;
 		}
-		return queryParams;
+		return $utils.trimObj(queryParams);
 	}
 	//查询列表
     function refTable(){
@@ -262,10 +270,10 @@ border-left: 1px solid #eee;
 			<div class="explain_col">
 	    		<form id="searchForm" name="searchForm"  method="post">
 	    		
-	    			<span>资源名称：</span><input type="text" name="resourceName" class="form-control input-sm w260" style="display: inline;">&nbsp;
+	    			<span>资源名称：</span><input type="text" name="resourceName" class="form-control input-sm w260" style="display: inline;">
 	    			<input type="hidden" name="parentId">
 	    			
-	    			<input type="button" class="btn btn-info btn-round btn-sm" value="查询" onclick="refTable()">&nbsp;&nbsp;
+	    			<input type="button" class="btn btn-info btn-round btn-sm" value="查询" onclick="refTable()">
 	    			<input type="button" class="btn btn-warning btn-round btn-sm" value="重置" onclick="$('#searchForm')[0].reset();"> 
 	    		</form>
 	    	</div>
@@ -295,9 +303,8 @@ border-left: 1px solid #eee;
 						<th data-field="" data-checkbox="true"></th>
 						<th data-field="id">ID</th>
 						<th data-field="name">资源名称</th>
-						<th data-field="parentName">上级资源</th>
 						<th data-field="path" >资源路径</th>
-						<th data-field="resourceLevelStr">层级</th>
+						<th data-field="level">层级</th>
 						<th data-field="permission">权限字符串</th>
 						<th data-field="sort">排序</th>
 						<th data-field="status" data-formatter="statusFormatter" >状态</th>

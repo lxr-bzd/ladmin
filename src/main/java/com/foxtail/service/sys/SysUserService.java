@@ -24,7 +24,7 @@ public interface SysUserService {
       */
      public SysUser findSingleUser(String account);
      
-     public void setUserRole(SysUserRole[] sysUserRoles);
+     public void doSetRole(String uid,String[] roleids);
      
      
      public boolean isExist(String account);

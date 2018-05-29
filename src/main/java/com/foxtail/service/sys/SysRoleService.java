@@ -1,6 +1,7 @@
 package com.foxtail.service.sys;
 
 import java.util.List;
+import java.util.Map;
 
 import com.foxtail.common.base.BaseMybatisService;
 import com.foxtail.common.page.Pagination;
@@ -8,7 +9,7 @@ import com.foxtail.model.sys.SysRole;
 import com.foxtail.model.sys.SysRoleRes;
 import com.foxtail.model.sys.SysUserRole;
 
-public interface SysRoleService/* extends BaseMybatisService<SysRole,Integer>*/ {	
+public interface SysRoleService {	
     
     
 	SysRole getById(String id);
@@ -24,6 +25,9 @@ public interface SysRoleService/* extends BaseMybatisService<SysRole,Integer>*/ 
     public List<SysRole> findAll();
     
     public List<SysUserRole> findUserRoleByUid(String uid);
+    
+    
+    List<Map<String, Object>> findAllByUid(String uid);
    
     /**
      * 授权

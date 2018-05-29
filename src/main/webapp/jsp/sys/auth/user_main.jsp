@@ -98,7 +98,7 @@
 		var queryParams = $("#searchForm").serializeObject();
 		queryParams.limit=params.limit;
 		queryParams.offset=params.offset;
-		return queryParams;
+		return $utils.trimObj(queryParams);
 	}
 	//查询列表
     function refTable(){
@@ -135,29 +135,8 @@
     function setUser(id){
     	$app.dialog("${path}/sys/auth/user/toSetRole.do?uid="+id,function(){
     		refTable();
-		},{width:'300px',height:"500px"});
+		},{height:"500px"});
     	
-    	
-    	/* var selected=[id];
-    	if(selected.length>0&&selected.length<2){
-    		var dialog = art.dialog.open("${path}/sys/auth/role/toUserRoleTree.do?userId="+selected,{
-    	  		  id:"selectResourceDialog",
-    	  		  title:"选择人员",
-    	  		  width :'300px',
-    	  		  height:'380px',
-    	  		  lock:true,
-    	  		  init: function (){
-    		  		$(this.iframe).attr("scrolling","no");//去掉滚动条
-    		  	  },
-    	  		  close:function(){
-    	  			  
-    	  		  }
-    	  	});
-    	}else{
-    		//提示信息
-    		$app.alert('请选择一条数据进行操作');
-    		
-    	} */
     }
     
     function closeDialog(){
@@ -180,8 +159,8 @@
     <div class="rightinfo">
 		<div class="explain_col">
     		<form id="searchForm" name="searchForm"  method="post">
-    			<label>用户名：</label><input type="text" name="userName" class="form-control input-sm w260" style="display: inline;">&nbsp;
-    			<input type="button" class="btn btn-info btn-round btn-sm" value="查询" onclick="refTable()">&nbsp;&nbsp;
+    			<label>用户名：</label><input type="text" name="kw" class="form-control input-sm w260" style="display: inline;">&nbsp;
+    			<input type="button" class="btn btn-info btn-round btn-sm" value="查询" onclick="refTable()">
     			<input type="button" class="btn btn-warning btn-round btn-sm" value="重置" onclick="$('#searchForm')[0].reset();">
     		</form>
     	</div>
@@ -192,9 +171,9 @@
 		    	<button class="btn btn-info btn-round btn-sm" onclick="toAdd();">
 					<i class="glyphicon glyphicon-plus"></i> 添加账号
 				</button>
-				<button class="btn  btn-warning btn-round btn-sm " onclick="toRemove()">
-					<i class="glyphicon glyphicon-trash"></i> 批量删除
-				</button>
+				<button class="btn btn-danger btn-sm" onclick="toRemove()">
+						<i class="glyphicon glyphicon-trash"></i> 批量删除
+					</button>
 	    
 		</div>
     

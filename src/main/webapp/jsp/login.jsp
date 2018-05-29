@@ -108,7 +108,7 @@
                         <div class="loginbox login_table">
                         	<div class="loginform">
                         		<div class="loginHead">
-                        			<div class="loginIcon fl"><img src="images/layout/logo_icon.png" alt="" /></div>
+                        			<div class="loginIcon fl"><img src="images/sys/logo_icon.png" alt="" /></div>
                         			<div class="loginTxt fl">
                         				<h3>嘉瑞云办公管理系统</h3>
                         				<h5>云办公改变工作效率</h5>

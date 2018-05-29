@@ -10,9 +10,9 @@
 	<script src="${path }/jslib/browser.js"></script>
 	
 	<%-- common js class --%>
+	<script type="text/javascript" src="${path}/js/lform.js"></script>
 	<script type="text/javascript" src="${path}/js/foxtail/Tools.js"></script>
 	<script type="text/javascript" src="${path}/js/foxtail/app.js"></script>
-	<script type="text/javascript" src="${path}/js/foxtail/util.js"></script>
 	<!-- 日期 -->
 	<script type="text/javascript" src="${path}/jslib/My97DatePicker/4.7/WdatePicker.js"></script>
 	<link href="${path}/css/layout/style.css" rel="stylesheet" type="text/css" />

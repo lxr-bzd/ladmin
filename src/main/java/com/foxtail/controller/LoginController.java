@@ -3,12 +3,10 @@ package com.foxtail.controller;
 import java.io.Serializable;
 import java.util.List;
 import java.util.regex.Pattern;
-
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
@@ -17,18 +15,13 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
-import com.foxtail.bean.ServiceManager;
 import com.foxtail.common.JsonResult;
-import com.foxtail.common.LoggerUtils;
 import com.foxtail.common.util.VerifyCodeUtils;
 import com.foxtail.core.shiro.IncorrectCaptchaException;
 import com.foxtail.core.shiro.ShiroUser;
@@ -77,9 +70,9 @@ public class LoginController {
 	
 	/**
 	 * 
-	* Description:加载验证码    
+	* Description:加载验证码
 	* @Title: loadPasskey  
-	* @since 2016年5月31日 下午2:27:30
+	* @since 2016年5月31日 下午2:27:30 
 	* @param request
 	* @param response
 	* @throws Exception

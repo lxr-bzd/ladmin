@@ -84,15 +84,14 @@ public class SysUserServiceImpl implements SysUserService{
 	}
 
 	@Override
-	public void setUserRole(SysUserRole[] sysUserRoles) {
-		if (null!=sysUserRoles&&sysUserRoles.length>0) {
-			String userId=sysUserRoles[0].getUid();
-			sysUserRoleDao.deleteByUids(new String[] {userId});
-			for (SysUserRole sysUserRole : sysUserRoles) {
-				sysUserRoleDao.save(sysUserRole.getUid()+"",sysUserRole.getRoleid());
-			}
-		}
+	public void doSetRole(String uid,String[] roleids) {
 		
+		sysUserRoleDao.deleteByUids(new String[] {uid});
+		if (null==roleids||roleids.length<1)return;
+		
+		for (String string : roleids) {
+			sysUserRoleDao.save(uid,string);
+		}
 	}
 
 

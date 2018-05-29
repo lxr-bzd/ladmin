@@ -6,9 +6,8 @@
 
 	 <!-- 分页数据 -->    
 	<select id="findForPage" resultType="com.foxtail.model.sys.SysUser" >
-  		select 
-  		<include refid="BASE_COL" /> from t_sys_user a
-		<if test="kw != null ">and a.account like #{ kw }</if>
+  		select <include refid="BASE_COL" /> from t_sys_user a WHERE 1=1
+		<if test="kw != null ">and a.account like CONCAT('%',#{kw},'%')</if>
   	</select>      
   
 	<!-- 根据主键获取对象 -->  

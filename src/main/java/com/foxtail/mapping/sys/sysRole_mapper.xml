@@ -8,8 +8,7 @@
 
 	 <!-- 分页数据 -->    
 	<select id="findForPage" resultType="com.foxtail.model.sys.SysRole" parameterType="string">
-  		select <include refid="BASE_COL" />
-  	      from t_sys_role where 1=1 
+  		select <include refid="BASE_COL" /> from t_sys_role where 1=1 
 		  <if test="kw != null ">and role_name like CONCAT('%',#{kw},'%')</if>
   	</select> 
   	

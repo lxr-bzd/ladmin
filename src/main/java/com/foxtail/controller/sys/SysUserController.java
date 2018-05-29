@@ -2,6 +2,8 @@ package com.foxtail.controller.sys;
 
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.alibaba.fastjson.JSONObject;
 import com.foxtail.common.DataGridResult;
 import com.foxtail.common.JsonResult;
 import com.foxtail.common.base.BaseController;
@@ -47,8 +51,10 @@ public class SysUserController extends BaseController {
 	@RequestMapping("toedit") 
 	public String  toAdd(String sysM,String sysA,String id,ModelMap model){
 		String jsp= getEditJsp(sysM);
-		if(isEditPage(sysA))
+		if(isEditPage(sysA)) {
 			model.put("vo", sysUserService.getById(id));
+			model.put("voJson", JSONObject.toJSONString(sysUserService.getById(id)));
+		}
 		return jsp;
 	}
 	
@@ -76,11 +82,14 @@ public class SysUserController extends BaseController {
 	}
 
 	
-	@RequestMapping("/toSetUserRoles")
+	@RequestMapping("setUserRoles")
 	@ResponseBody
-	public Object toSetUserRoles(@RequestBody SysUserRole[] sysUserRoles){
+	public Object setUserRoles(String uid,String roleids){
 		
-		this.sysUserService.setUserRole(sysUserRoles);
+		String[] roleArr = null;
+		if(!StringUtils.isBlank(roleids))roleArr = roleids.split(",");
+		
+		sysUserService.doSetRole(uid,roleArr);
 		return JsonResult.getSuccessResult();
 	}
 	

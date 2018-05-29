@@ -10,13 +10,15 @@
 		var path = '<%=request.getContextPath() %>';
 		var _pageSize=10;
 	</script>
+	
+	
 	<script src="${path }/jslib/jquery.min-1.11.js"></script>
 	<script src="${path }/jslib/browser.js"></script>
 	
 	<%-- common js class --%>
 	<script type="text/javascript" src="${path}/js/foxtail/Tools.js"></script>
+	<script type="text/javascript" src="${path}/js/utils.js"></script>
 	<script type="text/javascript" src="${path}/js/foxtail/app.js"></script>
-	<script type="text/javascript" src="${path}/js/foxtail/util.js"></script>
 	<!-- 日期 -->
 	<script type="text/javascript" src="${path}/jslib/My97DatePicker/4.7/WdatePicker.js"></script>
 	<link href="${path}/css/layout/style.css" rel="stylesheet" type="text/css" />
@@ -32,9 +34,6 @@
     <script src="${path }/jslib/layer/layer.js"></script>
     <!-- bootstrap table 操作公共方法 -->
 	<script src="${path }/js/foxtail/tableCommon.js"></script>
-	<%-- <!-- 字体样式 -->
-	<link rel="stylesheet" href="${path }/css/font-awesome-4.4.0/css/font-awesome.min.css"> --%>
-	<%-- jquery --%>
 	<script type="text/javascript" src="${path}/jslib/jquery.form.js"></script>
 	<script type="text/javascript" src="${path}/js/jquery.validate.min.js"></script>
 	<script type="text/javascript" src="${path}/js/jquery.validate.messages.js"></script>
@@ -59,7 +58,5 @@
 				}
 			}
 		}); 
-		layui.use('form', function(){
-		  form = layui.form;
-		});
+	
 	</script>

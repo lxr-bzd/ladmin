@@ -361,47 +361,7 @@ $lxr.isEmpty = function(obj){
 
 
 
-$lxr.tree = function(array,op){
-	
-	
-	if(!op)op = {};
-	
-	var pidname = !op.pidname?"pid":op.pidname;
-	var childname = op.childname?op.childname:"childs";
-	var idname = op.idname?op.idname:"id";
-	
-	var root = [];
-	for (var i = 0; i < array.length; i++) {
-		if(op.rootval==array[i][pidname])
-			root.push(array[i]);
-		
-		
-		var pid = array[i][idname];
-		
-		array[i].childs = getbyPid(array,pid);
-	}
-	
-	
-	
-	function getbyPid(array,pid){
-		
-		var l = [];
-		 for (var i = 0; i < array.length; i++) {
-			if(array[i][pidname]==pid)
-				l.push(array[i]);
-		}
-		 
-		 return l;
-	}
-	
-	
-	
-	
-	
-	
-	return root;
-	
-}
+
 
 
 
@@ -494,6 +454,83 @@ $lxr.toast = function (msg,duration){
 
 
 
+
+var treeTable = function(op){
+	var tTable = {};
+	
+	tTable.model = $lxr.tree(op.data,{pidname:op.modelPid,idname:op.modelId});
+	paintRoot();
+	
+	 function paintRoot(){
+		 $(op.tbody).empty();
+		 for (var i = 0; i < tTable.model.length; i++) {
+			 var mo = tTable.model[i];
+			 
+			$(op.tbody).append(initTr(mo,0,true));
+		}
+		 
+	 }
+	 
+	 
+	 function initTr(model,level,isclose){
+		 var $tr = $(op.getTr(model,level,isclose));
+		 $tr.attr("data-pid",model[op.modelPid]);
+		 $tr.attr("data-id",model[op.modelId]);
+		 $tr.attr("data-isclose",isclose?"1":"");
+		 $tr.attr("data-level",level);
+		 $tr.data("treeModel",model);
+		 return $tr;
+	 }
+	 
+	 
+	 
+	 tTable.switchItem = function(id){
+		 var $tr = $(op.tbody).find(">tr[data-id="+id+"]");
+		if($tr.attr("data-isclose")){
+			var $ctr = initTr($tr.data("treeModel"),$tr.attr("data-level"),false);
+			$tr.replaceWith($ctr);
+			printChild($ctr);
+		}else{
+			var $ctr = initTr($tr.data("treeModel"),$tr.attr("data-level"),true);
+			$tr.replaceWith($ctr);
+			removeChild($ctr);
+			
+		}
+			
+		 
+	 }
+	 
+	 function printChild(tr){
+			
+			var childs = tr.data("treeModel").childs;
+			if(!childs||childs.length<1)return;
+			
+			var level = tr.attr("data-level")+1;
+			
+			for (var i = 0; i < childs.length; i++) {
+				var ctr = initTr(childs[i],level,true);
+				$(tr).after(ctr);
+			
+			}
+			
+	 }
+	 
+	function removeChild(tr) {
+		var id = tr.attr("data-id");
+		var ch = $(op.tbody+">tr[data-pid="+id+"]");
+		
+		ch.each(function(i,e){
+			removeChild($(e));
+			
+		});
+		
+		ch.remove();
+	} 
+	 
+	
+	
+	return tTable;
+}
 
 
 

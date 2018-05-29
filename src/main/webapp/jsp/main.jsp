@@ -86,13 +86,14 @@ function touPwd(){
 <div>
 	<div id="top" class="header">
 		<div class="topleft" >
-	    	<a href="${path}/my/main/index.do" target="rightFrame"><img src="images/layout/logo.png" title="系统首页" /></a>
+	    	<a href="${path}/my/main/index.do" target="rightFrame"><img src="images/sys/logo.png" title="系统首页" /></a>
 	    </div>
     <ul class="nav">
 	
     	<c:forEach var="res" items="${resList }" varStatus="status">
     		<c:if test="${res.level==1&&res.permission!='my' }">
-    			<li><a href="javascript:void(0)" id="sys_${res.id }" onclick="changeList('sys_${res.id }')" ><img src="images/layout/${res.icon}" title="${res.name }" /><h2 >${res.name }</h2></a></li>
+    			<li><a href="javascript:void(0)" id="sys_${res.id }" onclick="changeList('sys_${res.id }')" >
+    			<img src="${res.icon}" title="${res.name }" /><h2 >${res.name }</h2></a></li>
     			
     		</c:if>
     	

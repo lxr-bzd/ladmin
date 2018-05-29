@@ -9,7 +9,7 @@ import com.foxtail.common.base.BaseDao;
 import com.foxtail.common.page.Pagination;
 import com.foxtail.model.sys.SysRole;
 
-public interface SysRoleDao /*extends BaseDao<SysRole,Integer>*/ {	
+public interface SysRoleDao {	
     
 	void save(@Param("mo")SysRole role);
 	
@@ -21,7 +21,7 @@ public interface SysRoleDao /*extends BaseDao<SysRole,Integer>*/ {
     
     public List<SysRole> findAll();
   
-    List<SysRole> findForPage(String kw);
+    List<SysRole> findForPage(@Param("kw")String kw);
 
     List<String> findRoleTypesByUserId(String userId); 
     

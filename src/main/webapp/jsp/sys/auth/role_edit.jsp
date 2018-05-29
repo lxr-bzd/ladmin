@@ -48,7 +48,6 @@ var backurl = "${path}/sys/auth/role/toList.do";
 </script>
 </head>
 <body>
-	<div>
 		
 		<div class="formbody">
    		<c:if test="${empty param.sysA}">
@@ -71,7 +70,6 @@ var backurl = "${path}/sys/auth/role/toList.do";
 						</div>
 						<div class="clear"></div>
 					</li>
-	    			<li><span>&nbsp;</span><input name="" type="button" class="btn btn-primary" value="确认保存" onclick="toSubmit()"/>&nbsp;&nbsp;&nbsp;&nbsp;<input name="" type="button" class="btn btn-warning" value="返回列表" onclick="goBackList();"/></li>
 	    		</ul>
     		</form>
     		</c:if>
@@ -96,11 +94,13 @@ var backurl = "${path}/sys/auth/role/toList.do";
 						</div>
 						<div class="clear"></div>
 					</li>
-	    			<li><span>&nbsp;</span><input name="" type="button" class="btn btn-primary" value="确认保存" onclick="toSubmit()"/>&nbsp;&nbsp;&nbsp;&nbsp;<input name="" type="button" class="btn btn-warning" value="返回列表" onclick="goBackList();"/></li>
-	    		</ul>
+	    			</ul>
     		</form>
     		</c:if>
 	    </div>
-	</div>
+	<div class="btnWrap">
+					<input name="" type="button" class="btn btn-primary" value="确认" onclick="toSubmit()"/>&nbsp;&nbsp;&nbsp;&nbsp;
+					<input name="" type="button" class="btn btn-warning" value="取消" onclick="goBack();"/>
+	    		</div>
 </body>
 </html>

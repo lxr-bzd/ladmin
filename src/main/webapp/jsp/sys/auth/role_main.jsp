@@ -67,7 +67,7 @@
 		var queryParams = $("#searchForm").serializeObject();
 		queryParams.limit=params.limit;
 		queryParams.offset=params.offset;
-		return queryParams;
+		return $utils.trimObj(queryParams);
 	}
 	
     
@@ -164,7 +164,7 @@
     <div class="rightinfo">
 		<div class="explain_col">
     		<form id="searchForm" name="searchForm"  method="post">
-    			<span>角色名称：</span><input type="text" name="roleName" class="form-control input-sm" style="width: 220px;display: inline;">&nbsp;
+    			<span>角色名称：</span><input type="text" name="kw" class="form-control input-sm" style="width: 220px;display: inline;">&nbsp;
 
     			<input type="button" class="btn btn-info btn-round btn-sm" value="查询" onclick="refTable()">&nbsp;&nbsp;
     	<input type="button" class="btn btn-warning btn-round btn-sm" value="重置" onclick="$('#searchForm')[0].reset();">	</form>
@@ -174,11 +174,9 @@
 		    	<button class="btn btn-info btn-round btn-sm" onclick="toAdd();">
 					<i class="glyphicon glyphicon-plus"></i> 添加角色
 				</button>
-		    
-			
-				<button class="btn btn-warning btn-round btn-sm" onclick="toRemove()">
-					<i class="glyphicon glyphicon-trash"></i> 批量删除
-				</button>
+		    <button class="btn btn-danger btn-sm" onclick="toRemove()">
+						<i class="glyphicon glyphicon-trash"></i> 批量删除
+					</button>
 			
 	   
 		</div>

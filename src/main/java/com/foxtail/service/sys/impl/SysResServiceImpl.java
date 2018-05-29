@@ -178,6 +178,7 @@ public class SysResServiceImpl implements SysResService{
 	
 	@Override
 	public void save(SysRes resource) {
+		
 		SysResDao.save(resource);
 	}
 

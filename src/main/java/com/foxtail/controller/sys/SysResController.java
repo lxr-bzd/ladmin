@@ -69,8 +69,10 @@ public class SysResController extends BaseController {
 	@RequestMapping("save") 
 	@ResponseBody
 	public Object save(SysRes po) {
-	
-			this.sysResService.save(po);
+
+		SysRes pRes = sysResService.getById(po.getParentid());
+		po.setLevel(pRes.getLevel()+1);
+		sysResService.save(po);
 			return JsonResult.getSuccessResult();
 	}
 	

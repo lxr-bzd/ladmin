@@ -128,8 +128,8 @@ public class SysRoleController extends BaseController {
 	
 	@RequestMapping("loadRoleTree")
 	@ResponseBody
-	public List<TreeNode> loadRoleTree(String uid){
-		if(StringUtils.isBlank(uid))
+	public Object loadRoleTree(String uid){
+/*		if(StringUtils.isBlank(uid))
 			throw new ApplicationException("用户id不能为空");
 	   
 		List<TreeNode> treenodes = new ArrayList<TreeNode>();
@@ -147,7 +147,9 @@ public class SysRoleController extends BaseController {
 			if(map.get(sysRole.getId())!=null)treeNode.setChecked(true);
 			treenodes.add(treeNode);
 		}
-		return treenodes;
+		return treenodes;*/
+		
+		return JsonResult.getSuccessResult(sysRoleService.findAllByUid(uid));
 	}
 	
 	
