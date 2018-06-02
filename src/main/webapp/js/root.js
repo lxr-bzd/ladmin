@@ -6,6 +6,8 @@
 		'/js/foxtail/app.js',
 		'/js/foxtail/util.js',
 		'/js/ladmin.js',
+		'/js/lform.js',
+		
 		'/jslib/My97DatePicker/4.7/WdatePicker.js',
 		'/jslib/table/docs/assets/bootstrap/js/bootstrap.min.js',
 		'/jslib/table/dist/bootstrap-table.js',

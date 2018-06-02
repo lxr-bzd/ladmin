@@ -1,11 +1,12 @@
 package com.foxtail.service.sys.impl;
 
 import java.util.List;
+import java.util.Map;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.foxtail.common.page.Pagination;
-import com.ladmin.shiro.CustomRealm;
 import com.foxtail.dao.sys.SysRoleDao;
 import com.foxtail.dao.sys.SysRoleResDao;
 import com.foxtail.dao.sys.SysUserRoleDao;
@@ -15,6 +16,7 @@ import com.foxtail.model.sys.SysUserRole;
 import com.foxtail.service.sys.SysRoleService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.ladmin.shiro.CustomRealm;
 import com.lxr.commons.exception.ApplicationException;
 
 
@@ -111,8 +113,12 @@ public class SysRoleServiceImpl implements SysRoleService{
 		return null;
 	}
 
-	
-	
+
+	@Override
+	public List<Map<String, Object>> findAllByUid(String uid) {
+		
+		return sysUserRoleDao.findAllByUid(uid);
+	}
 	
 }
 

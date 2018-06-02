@@ -42,18 +42,28 @@ var backurl = "${path}/sys/auth/role/toList.do";
 			  } */
 			 };
 	
-
-
+		$(function(){
+			var id = $app.getQueryStr("id");
+			$app.request("sys/auth/role/view.do?sysT=i&id="+id,function(data){
+				console.log(data);
+				$lform.init($("#sub_form"),data.data);
+			});
+			
+			
+		})
+		
+		
 </script>
+
 </head>
 <body>
 		
 		<div class="formbody">
    		
-    		<form id="sub_form" method="post" data-action="${path}/sys/auth/role/update.do">
+    		<form id="sub_form" method="post" data-action="sys/auth/role/update.do">
    				<input type="hidden" name="id" value="${vo.id}"/>
 				<ul class="forminfo">
-					<li><span>角色名称：</span><input name="name" id="roleName" value="${vo.name}" type="text" class="form-control input-primary input-sm w260" /></li>
+					<li><span>角色名称：</span><input name="name" type="text" class="init-widget form-control input-primary input-sm w260" /></li>
 					
 					<li><span>角色描述：</span>
 						<textarea class="form-control input-sm w260" name="rdesc" id="roleDesc">${vo.rdesc}</textarea>
@@ -75,7 +85,7 @@ var backurl = "${path}/sys/auth/role/toList.do";
 
 <div class="btnWrap">
 					<input name="" type="button" class="btn btn-primary" value="确认" onclick="toSubmit()">
-					<input name="" type="button" class="btn btn-warning" value="取消" onclick="goBack();">
+					<input name="" type="button" class="btn btn-warning" value="取消" onclick="$ladmin.goBack();">
 </div>
 </body>
 </html>

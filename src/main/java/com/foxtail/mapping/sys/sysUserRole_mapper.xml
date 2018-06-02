@@ -10,7 +10,7 @@
               #{id}
           </foreach>
 	</delete>
-	
+
 	<!-- 保存对象 -->
 	<insert id="save" >
        insert into t_sys_user_role (uid,roleid)values (#{uid},#{roleid})
@@ -30,8 +30,12 @@
 	
 	<select id="findUserRoleByUid" resultType="com.foxtail.model.sys.SysUserRole" >
   		select * from t_sys_user_role where uid=#{uid}
-  	</select>   
+  	</select>
 	
-	
+	<select id="findAllByUid" resultType="map" >
+  		select a.id,a.name,b.uid from t_sys_role a left join 
+  		(select uid,roleid from t_sys_user_role where uid=#{uid}) b
+  		 on a.id=b.roleid
+  	</select>
 	
 </mapper>   

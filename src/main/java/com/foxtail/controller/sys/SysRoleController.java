@@ -1,15 +1,11 @@
 package com.foxtail.controller.sys;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
-import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -19,14 +15,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.foxtail.common.DataGridResult;
 import com.foxtail.common.base.BaseController;
 import com.foxtail.common.page.Pagination;
-import com.foxtail.common.web.DataGrid;
 import com.foxtail.model.sys.SysRole;
 import com.foxtail.model.sys.SysUserRole;
 import com.foxtail.service.sys.SysResService;
 import com.foxtail.service.sys.SysRoleService;
-import com.foxtail.vo.tree.TreeNode;
 import com.ladmin.JsonResult;
-import com.lxr.commons.exception.ApplicationException;
 
 @Controller
 @RequestMapping("sys/auth/role") 
@@ -45,7 +38,7 @@ public class SysRoleController extends BaseController {
 		return getMainJsp(sysModule);
 	}
 	
-	@RequestMapping("/toedit") 
+	@RequestMapping("toedit") 
 	public String  toAdd(String sysM,String sysA,String id,ModelMap model){
 		String jsp= getEditJsp(sysM);
 		if(isEditPage(sysA))
@@ -54,9 +47,15 @@ public class SysRoleController extends BaseController {
 	}
 
 	
-	@RequestMapping("/view") 
+	@RequestMapping("view") 
 	@ResponseBody
-	public DataGrid list (HttpServletRequest request,String kw) {
+	public Object list (String sysT,HttpServletRequest request,String kw) {
+		
+		if("i".equals(sysT)) {
+			
+			return JsonResult.getSuccessResult(sysRoleService.getById(request.getParameter("id")));
+		}
+		
 		Pagination pagination = sysRoleService.findForPage(getPagination(request),kw);
 		
 		return DataGridResult.getResult(pagination);
@@ -127,8 +126,8 @@ public class SysRoleController extends BaseController {
 	
 	@RequestMapping("loadRoleTree")
 	@ResponseBody
-	public List<TreeNode> loadRoleTree(String uid){
-		if(StringUtils.isBlank(uid))
+	public Object loadRoleTree(String uid){
+		/*if(StringUtils.isBlank(uid))
 			throw new ApplicationException("用户id不能为空");
 	   
 		List<TreeNode> treenodes = new ArrayList<TreeNode>();
@@ -145,8 +144,9 @@ public class SysRoleController extends BaseController {
 			treeNode.setIsParent(false);
 			if(map.get(sysRole.getId())!=null)treeNode.setChecked(true);
 			treenodes.add(treeNode);
-		}
-		return treenodes;
+		}*/
+
+		return JsonResult.getSuccessResult(sysRoleService.findAllByUid(uid));
 	}
 	
 	

@@ -21,3 +21,14 @@ $ladmin.getMainUrl = function(){
 	if(strPage.indexOf(".html")<0)return strPage;
 	return strPage.substring(0,strPage.indexOf(".html"));
 }
+
+
+$ladmin.goBack = function(){
+	
+	try {
+		var index = parent.layer.getFrameIndex(window.name);
+		parent.layer.close(index);
+	} catch (e) {
+		if(isNaN(index))history.back();
+	}
+}

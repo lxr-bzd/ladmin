@@ -2,10 +2,8 @@ package com.foxtail.common;
 
 import com.foxtail.common.page.Pagination;
 import com.foxtail.common.web.DataGrid;
-<<<<<<< HEAD
-=======
 import com.ladmin.util.PageUtils;
->>>>>>> branch 'html版本' of https://github.com/lxr-bzd/ladmin.git
+
 
 public class DataGridResult {
 

@@ -44,12 +44,6 @@
 		
 	}
 	
-	 function toEdit(id){
-	    	
-	    	$app.dialog('sys/auth/role/toedit.do?sysA=edit&id='+id,function(){
-	    		refTable();
-			});
-		}
 	
     //查看
     function toInfo(){
@@ -111,7 +105,7 @@
 	 	
 			operator+=$app.btn('auth','授权','toAuth(\''+row.id+'\')');;
 		
-    		operator+=$app.btn('edit','编辑','toEdit(\''+row.id+'\')');
+    		operator+=$app.btn('edit','编辑','$ladmin.toedit(\''+row.id+'\')');
 	    
 	   operator+=$app.btn('delete','删除','toRemove(\''+row.id+'\')');
     	
