@@ -7,8 +7,6 @@
 <title>修改</title>
 <script type="text/javascript">
 
-var backurl = "${path}/sys/auth/role/toList.do";
-
 	function onSubmit(form){
 		return true;
 	}
@@ -30,15 +28,7 @@ var backurl = "${path}/sys/auth/role/toList.do";
 			  } */
 			 };
 	
-		$(function(){
-			var id = $app.getQueryStr("id");
-			$app.request("sys/auth/role/view.do?sysT=i&id="+id,function(data){
-				
-				$lform.init($("#sub_form"),data.data);
-			});
-			
-			
-		})
+	
 		
 		
 </script>
@@ -48,7 +38,7 @@ var backurl = "${path}/sys/auth/role/toList.do";
 		
 		<div class="formbody">
    		
-    		<form id="sub_form" method="post" data-action="sys/auth/role/update.do">
+    		<form id="sub_form" method="post" data-action="sys/auth/role/save.do">
    				<input type="hidden" name="id" class="init-widget"/>
 				<ul class="forminfo">
 					<li><span>角色名称：</span><input name="name" type="text" class="init-widget form-control input-primary input-sm w260" /></li>
@@ -57,7 +47,7 @@ var backurl = "${path}/sys/auth/role/toList.do";
 						<textarea class="init-widget form-control input-sm w260" name="rdesc" ></textarea>
 					</li>
 					<li><span>状态：</span>
-							<input type="radio" value="1" name="status"  class="init-widget" >
+							<input type="radio" value="1" name="status"  checked = "checked" >
 							启用
 							<input type="radio" value="2" name="status" >
 							禁用

@@ -7,8 +7,6 @@
 <title>修改</title>
 <script type="text/javascript">
 
-var backurl = "${path}/sys/auth/role/toList.do";
-
 	function onSubmit(form){
 		return true;
 	}
@@ -30,9 +28,10 @@ var backurl = "${path}/sys/auth/role/toList.do";
 			  } */
 			 };
 	
-		$(function(){
+	
+	 $(function(){
 			var id = $app.getQueryStr("id");
-			$app.request("sys/auth/role/view.do?sysT=i&id="+id,function(data){
+			$app.request("sys/auth/user/view.do?sysT=i&id="+id,function(data){
 				
 				$lform.init($("#sub_form"),data.data);
 			});
@@ -48,22 +47,17 @@ var backurl = "${path}/sys/auth/role/toList.do";
 		
 		<div class="formbody">
    		
-    		<form id="sub_form" method="post" data-action="sys/auth/role/update.do">
-   				<input type="hidden" name="id" class="init-widget"/>
+    		<form id="sub_form" class="vform" method="post" data-action="sys/auth/user/save.do">
 				<ul class="forminfo">
-					<li><span>角色名称：</span><input name="name" type="text" class="init-widget form-control input-primary input-sm w260" /></li>
+					<li><span>姓名：</span><input name="name" type="text" class="init-widget form-control input-primary input-sm w260" /></li>
+					<li><span>账号：</span><input name="account" type="text" class="init-widget form-control input-primary input-sm w260"  /></li>
+					<li><span>密码：</span><input name="password" type="password" class="init-widget form-control input-primary input-sm w260" /></li>
 					
-					<li><span>角色描述：</span>
-						<textarea class="init-widget form-control input-sm w260" name="rdesc" ></textarea>
+					<li><span>状态</span>
+							<input type="radio" class="init-widget" name="status" value="0" checked="checked">启用
+							<input type="radio"  name="status" value="1">锁定
 					</li>
-					<li><span>状态：</span>
-							<input type="radio" value="1" name="status"  class="init-widget" >
-							启用
-							<input type="radio" value="2" name="status" >
-							禁用
-						
-					</li>
-	    		</ul>
+	    			</ul>
     		</form>
 	    </div>
 

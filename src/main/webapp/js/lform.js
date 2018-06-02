@@ -1,4 +1,5 @@
 (function(){
+	console.log("this is lform.js");
 	var lform = {};
 	
 	lform.init = function(form,model){
@@ -19,8 +20,9 @@
 				}
 				
 			}
-			if("SELECT"==e.tagName){
-				
+			
+			if("TEXTAREA"==e.tagName){
+				initText(e,model,form);
 				
 			}
 			
@@ -32,7 +34,7 @@
 	
 	
 	function initText(e,mo){
-		var vkey = $(e).attr("data-vkey");
+		var vkey = $(e).attr("data-vkey")?$(e).attr("data-vkey"):$(e).attr("name");
 		var format = $(e).attr("data-format");
 		var val = (format?window[format](mo[vkey]):mo[vkey])
 		$(e).val(val);
@@ -40,7 +42,7 @@
 	}
 	
 	function initRadio(e,mo,form){
-		var vkey = $(e).attr("data-vkey");
+		var vkey = $(e).attr("data-vkey")?$(e).attr("data-vkey"):$(e).attr("name");
 		var format = $(e).attr("data-format");
 		var val = (format?window[format](mo[vkey]):mo[vkey])
 		

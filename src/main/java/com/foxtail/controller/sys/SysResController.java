@@ -52,7 +52,11 @@ public class SysResController extends BaseController {
 	
 	@RequestMapping("view") 
 	@ResponseBody
-	public DataGrid list (HttpServletRequest request,String kw,String parentId) {
+	public Object list (String sysT,HttpServletRequest request,String kw,String parentId) {
+		
+		if("i".equals(sysT)) {
+			return JsonResult.getSuccessResult(sysResService.getById(request.getParameter("id")));
+		}
 		
 		Pagination pagination = sysResService.findForPage(getPagination(request), kw,parentId);
 		

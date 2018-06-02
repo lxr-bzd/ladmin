@@ -36,7 +36,10 @@ public class SysUserController extends BaseController {
 	
 	@RequestMapping("view") 
 	@ResponseBody
-	public DataGrid list(HttpServletRequest request,String kw){
+	public Object list(String sysT,HttpServletRequest request,String kw){
+		if("i".equals(sysT)) {
+			return JsonResult.getSuccessResult(sysUserService.getById(request.getParameter("id")));
+		}
 		
 		Pagination pagination = sysUserService.findForPage(getPagination(request),kw);
 		return DataGridResult.getResult(pagination);

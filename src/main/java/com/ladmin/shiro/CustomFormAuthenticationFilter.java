@@ -145,7 +145,7 @@ public class CustomFormAuthenticationFilter extends FormAuthenticationFilter {
 	@Override
 	protected boolean onAccessDenied(ServletRequest request, ServletResponse response, Object mappedValue)
 			throws Exception {
-		HttpServletRequest trequest =  (HttpServletRequest) request;
+		HttpServletRequest trequest = (HttpServletRequest) request;
 		 HttpServletResponse tresponse = (HttpServletResponse) response;
 		  if ("XMLHttpRequest".equalsIgnoreCase(trequest .getHeader("X-Requested-With"))) {
 			  
@@ -158,5 +158,6 @@ public class CustomFormAuthenticationFilter extends FormAuthenticationFilter {
 		  }
 		return super.onAccessDenied(request, response, mappedValue);
 	}
+	
 	
 }

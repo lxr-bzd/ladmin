@@ -23,6 +23,8 @@ import com.lxr.commons.exception.ApplicationException;
 public class SysResServiceImpl implements SysResService{
 
 	private final static Logger log= Logger.getLogger(SysResServiceImpl.class);
+	
+
 
 	@Autowired
 	private SysResDao SysResDao;
@@ -169,8 +171,10 @@ public class SysResServiceImpl implements SysResService{
 	}
 	
 	@Override
-	public void save(SysRes resource) {
-		SysResDao.save(resource);
+	public void save(SysRes res) {
+		if(StringUtils.isEmpty(res.getParentid()))res.setParentid("0");
+		
+		SysResDao.save(res);
 	}
 
 	@Override

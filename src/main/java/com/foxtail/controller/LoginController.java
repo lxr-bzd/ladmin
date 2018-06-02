@@ -115,6 +115,14 @@ public class LoginController {
     	return "main";
     }
 	
+	@RequestMapping("logout")
+	@ResponseBody
+	private Object logout() {
+		Subject subject = SecurityUtils.getSubject();
+		SecurityUtils.getSecurityManager().logout(subject);
+		return JsonResult.getSuccessResult();
+	}
+	
 	@RequestMapping("redis")
 	@ResponseBody
 	public Object redis() {

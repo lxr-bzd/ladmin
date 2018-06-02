@@ -23,8 +23,8 @@
     
    <!-- 保存对象 -->
 	<insert id="save">
-      INSERT INTO t_sys_resource(id,  name,  parentid,  level,  ckey,  path,  icon,  rdesc,  permission,  sort,  status,  creator,  createtime) 
-      VALUES(#{ mo.id },#{ mo.name },#{ mo.parentid },#{ mo.level },#{ mo.ckey },#{ mo.path },#{ mo.icon },#{ mo.rdesc },#{ mo.permission },#{ mo.sort },#{ mo.status },#{ mo.creator },#{ mo.createtime })
+      INSERT INTO t_sys_resource(  name,  parentid,  level,  ckey,  path,  icon,  rdesc,  permission,  sort,  status,  creator,  createtime) 
+      VALUES(#{ mo.name },#{ mo.parentid },#{ mo.level },#{ mo.ckey },#{ mo.path },#{ mo.icon },#{ mo.rdesc },#{ mo.permission },#{ mo.sort },#{ mo.status },#{ mo.creator },#{ mo.createtime })
 	</insert>
 	
 	
