@@ -147,16 +147,30 @@ public class CustomFormAuthenticationFilter extends FormAuthenticationFilter {
 			throws Exception {
 		HttpServletRequest trequest = (HttpServletRequest) request;
 		 HttpServletResponse tresponse = (HttpServletResponse) response;
-		  if ("XMLHttpRequest".equalsIgnoreCase(trequest .getHeader("X-Requested-With"))) {
-			  
-			  tresponse.setCharacterEncoding("UTF-8");
-	            PrintWriter out = tresponse.getWriter();
-	            out.println(JSONObject.toJSONString(JsonResult.getResult(JsonResult.STATUS_UN_AUTH, "un longin")));
-	            out.flush();
-	            out.close();
-	            return false;
-		  }
-		return super.onAccessDenied(request, response, mappedValue);
+		 
+		 
+		 if(this.isLoginRequest(request, response)) {
+	            if(this.isLoginSubmission(request, response)) {
+
+	                return this.executeLogin(request, response);
+	            } else {
+	                
+	                return true;
+	            }
+	        } else {
+	        	 if ("XMLHttpRequest".equalsIgnoreCase(trequest .getHeader("X-Requested-With"))) {
+	   			  
+	   			  tresponse.setCharacterEncoding("UTF-8");
+	   	            PrintWriter out = tresponse.getWriter();
+	   	            out.println(JSONObject.toJSONString(JsonResult.getResult(JsonResult.STATUS_UN_AUTH, "un longin")));
+	   	            out.flush();
+	   	            out.close();
+	   	            return false;
+	   		  }
+	   		return super.onAccessDenied(request, response, mappedValue);
+	        }
+		 
+		 
 	}
 	
 	
