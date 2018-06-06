@@ -74,6 +74,14 @@ $(function(){
 		
 	});
 	
+	
+	$app.request("my.do",function(json){
+		$("#user_name").html("您好："+json.data.name);
+		
+	});
+	
+	
+	
 })
 
 
@@ -141,8 +149,8 @@ function logout(){
     <div class="topright">    
 	    
 		<div class="user">
-			<span>您好：${user.name }</span>
-			<a href="#" onclick="logout()" target="_parent">安全退出</a>
+			<span id="user_name"></span>
+			<span onclick="logout()"><a  href="#"  >安全退出</a></span>
 		</div>    
     </div>
 	<!-- topEnd -->
@@ -157,7 +165,7 @@ function logout(){
 				</dl>
 		</div>
 		<div id="middle-right"  >
-			 <iframe id="rightFrame" name="rightFrame" style="width:100%; border:0;" src="/my/main/index.do"></iframe>
+			 <iframe id="rightFrame" name="rightFrame" style="width:100%; border:0;" src="index.html"></iframe>
 		</div>
 		 <div id="clear" style="clear: both;"></div> 
 	</div>

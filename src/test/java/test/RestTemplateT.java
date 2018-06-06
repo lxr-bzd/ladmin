@@ -6,7 +6,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
-import net.sf.json.JSONObject;
+
+import com.alibaba.fastjson.JSONObject;
 
 public class RestTemplateT {
 	
@@ -138,7 +139,7 @@ private static JSONObject post2(String url,String session) {
 		String rString = response.getBody();
 		
 		
-		return JSONObject.fromObject(response.getBody());
+		return JSONObject.parseObject(response.getBody());
 		
 		
 
@@ -164,7 +165,7 @@ private static JSONObject post2(String url,String session) {
 		String rString = response.getBody();
 		
 		
-		return JSONObject.fromObject(response.getBody());
+		return JSONObject.parseObject(response.getBody());
 		
 		
 

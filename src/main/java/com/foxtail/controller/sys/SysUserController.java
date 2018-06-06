@@ -27,12 +27,6 @@ public class SysUserController extends BaseController {
 	private SysUserService sysUserService; 
 	
 	
-	@RequestMapping()
-	public String toMain(String sysModule){
-		
-		return getMainJsp(sysModule);
-	}
-	
 	
 	@RequestMapping("view") 
 	@ResponseBody
@@ -46,13 +40,6 @@ public class SysUserController extends BaseController {
 	}
 		
 	
-	@RequestMapping("toedit") 
-	public String  toAdd(String sysM,String sysA,String id,ModelMap model){
-		String jsp= getEditJsp(sysM);
-		if(isEditPage(sysA))
-			model.put("vo", sysUserService.getById(id));
-		return jsp;
-	}
 	
 	
 	@RequestMapping("save") 

@@ -1,5 +1,5 @@
 
-$app = {loginUrl:'/jroa/login.do',imgUpload:"/jroa/image/upload.do"};
+$app = {loginUrl:'/ladmin/login.html',imgUpload:"/ladmin/image/upload.do"};
 
 $app.getContext = function(){
 	
@@ -18,7 +18,7 @@ $app.request = function(url,call,param){
 		
 		}, 
 		success: function(data, textStatus){
-			if(data&&data.status==5)window.location.href = $app.loginUrl;
+			if(data&&data.code==5)window.location.href = $app.loginUrl;
 			call(data,textStatus);
 		}, 
 		complete: function(XMLHttpRequest, textStatus){ 

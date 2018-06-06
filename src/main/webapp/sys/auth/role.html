@@ -1,6 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>查询列表</title>
 	<script src="../../jslib/jquery.min-1.11.js"></script>
@@ -57,10 +60,8 @@
     
     //授权
     function toAuth(id){
-    	
-    	
-    		$app.dialog("sys/auth/role/toSetRes.do?roleId="+id,function(){
-        		
+    	$app.dialog("sys/auth/role_res.html?roleid="+id,function(){
+    		
     		});
     	
     } 

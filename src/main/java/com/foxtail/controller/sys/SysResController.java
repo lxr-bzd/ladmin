@@ -14,12 +14,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import com.foxtail.bean.ServiceManager;
 import com.foxtail.common.DataGridResult;
 import com.foxtail.common.base.BaseController;
 import com.foxtail.common.page.Pagination;
-import com.foxtail.common.web.DataGrid;
 import com.ladmin.shiro.Myprem;
-import com.ladmin.shiro.ShiroUser;
 import com.foxtail.model.sys.SysRes;
 import com.foxtail.model.sys.SysRoleRes;
 import com.foxtail.service.sys.SysResService;
@@ -40,12 +39,6 @@ public class SysResController extends BaseController {
 	SysRoleService sysRoleService;
 	
 	
-	@RequestMapping
-	public String toMain(String sysModule){
-		Subject subject = SecurityUtils.getSubject();
-		Boolean b = subject.isPermitted(Myprem.getMyprem("eferwf"));
-		return getMainJsp(sysModule);
-	}
 
 	
 	
@@ -63,26 +56,11 @@ public class SysResController extends BaseController {
 		return DataGridResult.getResult(pagination);
 	}
 		
-	
-	@RequestMapping("toedit") 
-	public String toAdd(String sysM,String sysA,String id,String parentId,Integer orderNum,ModelMap model){
-		
-		String jsp= getEditJsp(sysM);
-		if(!isEditPage(sysA)) {
-			SysRes sysRes = sysResService.getById(parentId);
-			model.put("vo", sysRes);
-		}else 
-			model.put("vo", sysResService.getById(id));
-		return jsp;
-	
-	}
-	
-	
 	@RequestMapping("save") 
 	@ResponseBody
 	public Object save(SysRes po) {
 	
-			this.sysResService.save(po);
+			sysResService.save(po);
 			return JsonResult.getSuccessResult();
 	}
 	
@@ -198,7 +176,7 @@ public class SysResController extends BaseController {
 	@ResponseBody
 	public Object myRes() {
     	
-    	List<SysRes> resList = sysResService.findAllByUserId(ShiroUser.getUserId());
+    	List<SysRes> resList = sysResService.findAllByUserId(ServiceManager.securityService.getUser().getId());
 
     	return resList;
 	}

@@ -13,22 +13,7 @@
                 <script src="jslib/layer/layer.js"></script>
                 <script type="text/javascript" src="js/foxtail/app.js"></script>
                 <script type="text/javascript">
-                    $(function() {
-                        if (window != top) {
-                            top.location.href = location.href;
-                        }
-
-                        var message = $.trim($('#msgShow').text());
-                        if (message) {
-                            $('#warnInfo').show();
-                        }
-
-                    });
-
-                    //刷新验证码
-                    function refreshCode() {
-                        $("#passkey_img").attr("src", "/loadPasskey.do?timestamp=" + new Date().getTime());
-                    }
+                  
 
 
                     function login() {
@@ -42,10 +27,10 @@
                         $app.request("login.do",function(data){
                         	if(data.code==1)
                         		window.location.href = 'main.html'
+                        		else $app.alert(data.msg);
+                        		
                         },{param:{loginName:loginName,password:password}})
                         
-                        var $btn = $("btnLogin").button('登录中...');
-                        $btn.button('reset');
                        /*  $("#userLoginForm").submit(); */
                     }
 
@@ -66,8 +51,6 @@
                          }
                          if (!pwd) {
  							layer.msg('请输入登录密码', {time: 5000, icon:6});
-    
-
                              return;
                          }
                          
@@ -100,8 +83,7 @@
                         		<div class="loginHead">
                         			<div class="loginIcon fl"><img src="images/layout/logo_icon.png" alt="" /></div>
                         			<div class="loginTxt fl">
-                        				<h3>嘉瑞云办公管理系统</h3>
-                        				<h5>云办公改变工作效率</h5>
+                        				<h3>嘉瑞管理系统</h3>
                         			</div>
                         		</div>
                         		<div class="loginWrap">
@@ -111,9 +93,7 @@
 	                        			<input type="password" id="password" name="password" class="text login-pass" placeHolder="请输入登录密码">
                         			</div>
                         			<div class="loginStore layui-form">
-									  <div class="layui-form-item">
-									      <input type="checkbox" name="rememberMe" title="记住我" lay-skin="primary">
-									  </div>
+									
                         			</div>
                                     <input id="btnLogin" type="button" class="" value="登  录" onclick="login();" />
                         		</div>

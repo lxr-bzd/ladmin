@@ -2,17 +2,9 @@ package com.ladmin.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-
-import com.foxtail.common.util.SpringContextUtils;
-import com.foxtail.dao.sys.SysRoleResDao;
 import com.foxtail.service.sys.SysResService;
-
-import me.chanjar.weixin.mp.api.WxMpConfigStorage;
-import me.chanjar.weixin.mp.api.WxMpService;
 
 public class DataInterceptor extends HandlerInterceptorAdapter{
 

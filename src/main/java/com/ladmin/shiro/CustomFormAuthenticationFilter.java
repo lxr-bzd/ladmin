@@ -16,6 +16,7 @@ import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.apache.shiro.web.util.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.fastjson.JSONObject;
+import com.foxtail.bean.ServiceManager;
 import com.foxtail.common.util.TcpipUtil;
 import com.foxtail.model.sys.SysUser;
 import com.foxtail.service.sys.SysUserService;
@@ -71,6 +72,9 @@ public class CustomFormAuthenticationFilter extends FormAuthenticationFilter {
 	}
  
 	
+	
+	
+	
 	@Override                                                  
 	protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
 		
@@ -84,7 +88,7 @@ public class CustomFormAuthenticationFilter extends FormAuthenticationFilter {
 	@Override
 	protected void issueSuccessRedirect(ServletRequest request, ServletResponse response) throws Exception {
 		//aop不能拦截filter的内容，记录登录认证的日志
-		SysUser sysUserActive = ShiroUser.getUser();
+		SysUser sysUserActive = ServiceManager.securityService.getUser();
 		//更新用户登录时间
 		SysUser user = new SysUser();
 		user.setId(sysUserActive.getId());
@@ -103,8 +107,6 @@ public class CustomFormAuthenticationFilter extends FormAuthenticationFilter {
 	//重写createToken方
 	@Override
     protected AuthenticationToken createToken(ServletRequest request, ServletResponse response){
-		//Object object = super.createToken(request, response);
-		String string = request.getContentType();
     	String username = getUsername(request);
         String password = getPassword(request);
         String captcha = getCaptcha(request);
@@ -122,14 +124,12 @@ public class CustomFormAuthenticationFilter extends FormAuthenticationFilter {
    }
 	
 	@Override
-	protected boolean onLoginSuccess(AuthenticationToken token, Subject subject, ServletRequest request,
-			ServletResponse response) throws Exception {
+	protected boolean onLoginSuccess(AuthenticationToken token, Subject subject, ServletRequest request,ServletResponse response) throws Exception {
 		 
 	        HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 	        HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 
-	        if (!"XMLHttpRequest".equalsIgnoreCase(httpServletRequest
-	                .getHeader("X-Requested-With"))) {// 不是ajax请求
+	        if (!com.ladmin.util.WebUtils.isAjax(httpServletRequest)) {// 不是ajax请求
 	            issueSuccessRedirect(request, response);
 	        } else {
 	            httpServletResponse.setCharacterEncoding("UTF-8");
@@ -158,7 +158,7 @@ public class CustomFormAuthenticationFilter extends FormAuthenticationFilter {
 	                return true;
 	            }
 	        } else {
-	        	 if ("XMLHttpRequest".equalsIgnoreCase(trequest .getHeader("X-Requested-With"))) {
+	        	 if (com.ladmin.util.WebUtils.isAjax(trequest)) {
 	   			  
 	   			  tresponse.setCharacterEncoding("UTF-8");
 	   	            PrintWriter out = tresponse.getWriter();
