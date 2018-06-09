@@ -27,6 +27,7 @@ import com.ladmin.shiro.ShiroUser;
 import com.foxtail.model.sys.SysRes;
 import com.foxtail.model.sys.SysUser;
 import com.foxtail.service.sys.SysResService;
+import com.github.lxr1827991.appsession.AppSession;
 import com.ladmin.JsonResult;
 
 @Controller
@@ -40,6 +41,8 @@ public class LoginController {
 	
 	@RequestMapping("login")
 	public String login(HttpServletRequest request, ModelMap model) throws Exception{
+		
+		AppSession appSession;
 		Subject subject = SecurityUtils.getSubject();
 		if(subject.isAuthenticated()){ //已经登录，重新登录
 			SecurityUtils.getSecurityManager().logout(subject);
