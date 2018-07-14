@@ -2,10 +2,6 @@ package test;
 
 import java.io.IOException;
 
-import org.apache.commons.io.IOUtils;
-
-import com.google.gson.Gson;
-
 public class Gosn {
 
 	

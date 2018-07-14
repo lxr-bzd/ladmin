@@ -54,7 +54,7 @@
 				/loadPasskey.do = anon
 				
 				<!-- 退出地址，登出操作功能无需自己开发，shiro去清除session-->
-				/logout.do = logout
+				<!-- /logout.do = logout -->
 				<!-- 配置记住我或认证通过可以访问的地址 -->
 				<!-- /loadAuthorization/pass.do  = user -->
 				<!-- /** = authc 所有url都必须认证通过才可以访问-->

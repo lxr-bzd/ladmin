@@ -83,10 +83,11 @@ public abstract class BaseJdbcDao
 	 * @param parameter
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public int queryForInt(String sql, Map parameter) {
 		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(
 				this.jdbcTemplate.getDataSource());
-		return template.queryForInt(sql, parameter);
+		return (int) template.queryForObject(sql, parameter, Integer.class);
 	}
     
 	/**

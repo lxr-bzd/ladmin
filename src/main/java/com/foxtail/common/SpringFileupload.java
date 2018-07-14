@@ -38,6 +38,7 @@ public class SpringFileupload {
 	                    String path=realPath+"/"+trueFileName;
 	                   
 	                    // 转存文件到指定的路径
+	                   
 	                    file.transferTo(new File(path));
 	                  
 	               

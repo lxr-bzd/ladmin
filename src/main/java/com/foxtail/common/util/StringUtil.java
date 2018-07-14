@@ -13,8 +13,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.lang.StringEscapeUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
 * Description:字符串处理工具类 
@@ -242,11 +242,11 @@ public class StringUtil{
 	}
 
 	public static String escapeHtml(String content) {
-		return StringEscapeUtils.escapeHtml(content);
+		return StringEscapeUtils.escapeHtml3(content);
 	}
 
 	public static String unescapeHtml(String content) {
-		return StringEscapeUtils.unescapeHtml(content);
+		return StringEscapeUtils.escapeHtml3(content);
 	}
 
 	/**

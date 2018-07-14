@@ -1,16 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>授权</title>
-<%@ include file="/common/edit_global.jsp"%>
-<link rel="stylesheet" href="${path}/jslib/zTree_v3/css/zTreeStyle/zTreeStyle.css" type="text/css"/>
-<script type="text/javascript" src="${path}/jslib/zTree_v3/js/jquery.ztree.core-3.5.js"></script>
-<script type="text/javascript" src="${path}/jslib/zTree_v3/js/jquery.ztree.excheck-3.5.min.js"></script>
-<script type="text/javascript" src="${path}/jslib/jquery.json-2.4.min.js"></script> 
-<script type="text/javascript" src="${path}/js/MaskUtil.js"></script>
+<script src="../../jslib/jquery.min-1.11.js"></script>
+
+<link rel="stylesheet" href="../../jslib/zTree_v3/css/zTreeStyle/zTreeStyle.css" type="text/css"/>
+<script type="text/javascript" src="../../jslib/zTree_v3/js/jquery.ztree.core-3.5.js"></script>
+<script type="text/javascript" src="../../jslib/zTree_v3/js/jquery.ztree.excheck-3.5.min.js"></script>
+<script type="text/javascript" src="../../jslib/jquery.json-2.4.min.js"></script> 
+<script type="text/javascript" src="../../js/MaskUtil.js"></script>
+
+<script src="../../js/root.js"></script>
+
 <style type="text/css">
 .tree_div {
   width:360px;
@@ -36,7 +41,7 @@
 					enable : true, //是否通过异步方式加载数据
 					dataType : "text",
 					type : "post",
-					url :  "${path}/sys/auth/res/loadSelectTree.do?id=${roleId}"
+					url :  "sys/auth/res/loadSelectTree.do?id="+$app.getQueryStr("roleid")
 				},
 				view : {
 					dblClickExpand : true,
@@ -68,7 +73,7 @@
 			var nodes = zTree.getCheckedNodes(true);
 
 			var resids = [];
-			var roleId = '${roleId}';
+			var roleId = $app.getQueryStr("roleid");
 			$.each(nodes,function(i,node){
 				var resid = node.id;
 				resids.push(resid);
@@ -76,22 +81,17 @@
 			MaskUtil.mask();
 			
 			
-			$.ajax({
-				  url:"${path}/sys/auth/role/toAuthorization.do",
-				  type:"post",
-				  data:{roleid:'${roleId}',resids:resids.join(",")},
-				  dataType:"json",
-				  cache:false,
-				  success:function(json){
-					  if(json.code==1)
+			
+			$app.request("sys/auth/role/toAuthorization.do",function(json){
+				 if(json.code==1)
 					  $app.alert('成功',function(){  //关闭事件
-							goBack();
+							$ladmin.goBack();
 						});
 					  else $app.alert(data.msg?data.msg:'失败');
-				   },error:function(data){
-					   
-				   }
-				}); 
+				
+			},{param:{roleid:$app.getQueryStr("roleid"),resids:resids.join(",")}})
+			
+			 
 		}
 		
 	
@@ -102,8 +102,8 @@
 <body style="margin-bottom: 45px;">
 	<div id="treeDemo" class="ztree tree_div"></div>
 	<div class="btnWrap">
-    				<input name="" type="button" class="btn btn-primary" value="确认" onclick="submitSelect();"/>&nbsp;&nbsp;&nbsp;&nbsp;
-    				<input name="" type="button" class="btn btn-warning" value="取消" onclick="goBack();"/>
+    				<input name="" type="button" class="btn btn-primary" value="确认" onclick="submitSelect();"/>
+    				<input name="" type="button" class="btn btn-warning" value="取消" onclick="$ladmin.goBack();"/>
 	</div>
 </body>
 </html>

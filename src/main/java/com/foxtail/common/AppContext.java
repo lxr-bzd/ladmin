@@ -2,8 +2,6 @@ package com.foxtail.common;
 
 import java.util.Map;
 
-import org.dom4j.DocumentException;
-
 import com.lxr.commons.utils.XmlUtils;
 
 public class AppContext {
