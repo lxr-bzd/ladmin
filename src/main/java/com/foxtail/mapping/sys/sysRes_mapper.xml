@@ -35,17 +35,15 @@
 	
 	 <!-- 获取表所有数据 -->
     <select id="findAll" resultType="com.foxtail.model.sys.SysRes" >
-      select <include refid="BASE_COL" />
-      from t_sys_resource a
+      select <include refid="BASE_COL" /> from t_sys_resource a
     </select>
-
+    
 	
 	
 	<delete id="deleteByParentId" parameterType="java.lang.Integer" >
 	  delete from t_sys_resource
 	  where parentid = #{parentid,jdbcType=INTEGER}
 	</delete>
-
 	
 	
 	<update id="update" parameterType="com.foxtail.model.sys.SysRes" >
@@ -72,7 +70,6 @@
 			<if test="permission != null ">
 		  	permission = #{permission},
 			</if>
-			
 			<if test="sort != null ">
 		  	sort = #{sort},
 			</if>
