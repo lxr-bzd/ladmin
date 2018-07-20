@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.ladmin.shiro.IncorrectCaptchaException;
 import com.foxtail.bean.ServiceManager;
 import com.foxtail.model.sys.SysUser;
@@ -30,6 +31,7 @@ public class LoginController {
 	@RequestMapping("login")
 	@ResponseBody
 	public Object login(HttpServletRequest request, ModelMap model) throws Exception{
+
 		Subject subject = SecurityUtils.getSubject();
 		if(subject.isAuthenticated()){ //已经登录，重新登录
 			SecurityUtils.getSecurityManager().logout(subject);
